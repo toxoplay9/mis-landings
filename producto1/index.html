@@ -63,7 +63,7 @@
     background:linear-gradient(160deg,#1B1C1F 0%,#2A2428 40%,#3A3035 100%);
   }
   .hero::before{
-    content:'';position:absolute;inset:0;z-index:0;opacity:0.25;
+    content:'';position:absolute;inset:0;z-index:0;opacity:0.25;transform-origin:center;
     background:url('https://images.unsplash.com/photo-1643722024730-b80f1c40b6d7?w=1600&q=80') center/cover no-repeat fixed;
     /* Para usar tu imagen: cambiala a background:url('images/hero-bg.png') */
   }
@@ -247,6 +247,10 @@
   .sticky .pm span{font-weight:400;font-size:0.85rem;color:#8B7B75;text-decoration:line-through;margin-right:0.3rem}
   .sticky .btn{flex:1;padding:0.85rem 1.5rem;font-size:1rem}
 
+  /* ===== SCROLL PROGRESS ===== */
+  .progress-bar{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,#D49595,#D4A04A,#D49595);background-size:200% auto;z-index:999;transition:width 0.15s linear;animation:pro-glow 2s ease-in-out infinite}
+  @keyframes pro-glow{0%,100%{opacity:1}50%{opacity:0.6}}
+
   /* ===== ANIMATIONS ===== */
   @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
   @keyframes fadeScale{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
@@ -266,6 +270,38 @@
   .step{transition:all 0.4s cubic-bezier(0.16,1,0.3,1)}
   .btn-pulse{animation:pulse-glow 3s ease-in-out infinite}
   @keyframes pulse-glow{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,0.3)}50%{box-shadow:0 8px 32px rgba(37,211,102,0.5)}}
+
+  /* ===== PRODUCT FLOAT ===== */
+  .hero-product{animation:heroFloat 6s ease-in-out infinite}
+  @keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+  /* ===== HERO ZOOM ===== */
+  .hero::before{animation:heroZoom 20s ease-in-out infinite alternate}
+  @keyframes heroZoom{0%{transform:scale(1)}100%{transform:scale(1.1)}}
+
+  /* ===== SAVE BADGE ===== */
+  .pb .save{animation:savePop 2.5s ease-in-out infinite}
+  @keyframes savePop{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+
+  /* ===== SHIMMER MEJOR ===== */
+  .ct .mejor{background-size:200% auto!important;animation:shimmer 2.5s linear infinite}
+
+  /* ===== GRADIENT SHIFT ===== */
+  .hero::after{animation:gradShift 10s ease-in-out infinite alternate}
+  @keyframes gradShift{0%{opacity:0.12}100%{opacity:0.22}}
+
+  /* ===== IMAGE REVEAL ===== */
+  .img-reveal{opacity:0;transform:scale(0.9);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1)}
+  .img-reveal.show{opacity:1;transform:scale(1)}
+
+  /* ===== STEP PULSE ===== */
+  .step-num{animation:stepBreathe 4s ease-in-out infinite}
+  @keyframes stepBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+  /* ===== CTA GLOW ===== */
+  .cta-f::after{content:'';position:absolute;inset:0;opacity:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(212,149,149,0.15) 0%,transparent 40%);pointer-events:none;transition:opacity 0.5s}
+  .cta-f:hover::after{opacity:1}
+
   @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}.anim{opacity:1;transform:none}.hero-content>*{opacity:1}}
 
   /* ===== RESPONSIVE ===== */
@@ -293,6 +329,7 @@
   </style>
 </head>
 <body>
+<div class="progress-bar"></div>
 
   <header class="hero">
     <div class="hero-content">
@@ -307,7 +344,7 @@
         <div class="old">$39.99</div>
         <div class="now">$24.99 <span class="save">-38%</span></div>
       </div>
-      <img src="images/producto.png" alt="Cinturón anticólicos" style="width:200px;margin:0 auto 1.5rem;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.3)">
+      <img src="images/producto.png" alt="Cinturón anticólicos" class="hero-product" style="width:200px;margin:0 auto 1.5rem;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.3)">
       <a href="https://wa.me/XXXXXXXXX?text=Quiero%20el%20cintur%C3%B3n%20antic%C3%B3licos" class="btn btn-pulse hero-cta" target="_blank" rel="noopener noreferrer">Comprar por WhatsApp</a>
       <div class="hero-g">🔒 Pago seguro · Envío a todo el país · <strong>30 días de garantía</strong></div>
     </div>
@@ -345,7 +382,7 @@
       <p class="ss">En menos de 30 segundos ya estás sintiendo cómo el calor empieza a trabajar.</p>
       <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2rem;margin-bottom:2rem">
         <div style="flex:1;min-width:260px">
-          <img src="images/producto-v2.png" alt="Cinturón anticólicos vista lateral" style="width:100%;max-width:320px;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.1);margin:0 auto;display:block">
+          <img src="images/producto-v2.png" alt="Cinturón anticólicos vista lateral" class="img-reveal" style="width:100%;max-width:320px;border-radius:20px;box-shadow:0 12px 40px rgba(0,0,0,0.1);margin:0 auto;display:block">
         </div>
         <div style="flex:1;min-width:260px;text-align:center">
           <p style="font-size:1.05rem;color:#6B5B55;max-width:400px;margin:0 auto">Diseñado ergonómicamente para adaptarse a la curva natural del abdomen. <strong style="color:#1B1C1F">No estorba, no aprieta, no se nota.</strong></p>
@@ -399,8 +436,8 @@
       <h2 id="feat-t" class="st">Todo lo que necesitás saber</h2>
       <p class="ss">Especificaciones de un producto diseñado para aliviarte de verdad.</p>
       <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2rem">
-        <img src="images/chatgpt-1.png" alt="Cinturón anticólicos diseño" style="width:calc(50% - 0.5rem);min-width:240px;flex:1;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.08)">
-        <img src="images/chatgpt-2.png" alt="Cinturón anticólicos vista frontal" style="width:calc(50% - 0.5rem);min-width:240px;flex:1;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.08)">
+        <img src="images/chatgpt-1.png" alt="Cinturón anticólicos diseño" class="img-reveal" style="width:calc(50% - 0.5rem);min-width:240px;flex:1;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.08)">
+        <img src="images/chatgpt-2.png" alt="Cinturón anticólicos vista frontal" class="img-reveal anim-d2" style="width:calc(50% - 0.5rem);min-width:240px;flex:1;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.08)">
       </div>
       <div class="feat-grid">
         <div class="f-c anim"><span class="f-icon">⚡</span><h3>Calor en 5 segundos</h3><p>Grafeno. Alcanza temperatura en segundos. El dolor no espera, esto tampoco.</p></div>
@@ -477,14 +514,29 @@
 
   <script>
   document.addEventListener('DOMContentLoaded',function(){
-    var o=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show')})},{threshold:0.15});
-    document.querySelectorAll('.anim').forEach(function(e){o.observe(e)});
+    var io=new IntersectionObserver(function(e){e.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show')})},{threshold:0.15});
+    document.querySelectorAll('.anim').forEach(function(e){io.observe(e)});
+    document.querySelectorAll('.img-reveal').forEach(function(e){io.observe(e)});
     document.querySelectorAll('.faq-q').forEach(function(b){
       b.addEventListener('click',function(){
         var o=this.classList.toggle('open');var a=this.nextElementSibling;
         this.setAttribute('aria-expanded',o);
         a.style.maxHeight=o?a.scrollHeight+'px':'0';
       });
+    });
+    /* Scroll progress */
+    var pb=document.querySelector('.progress-bar');
+    window.addEventListener('scroll',function(){
+      var s=document.documentElement.scrollTop||document.body.scrollTop;
+      var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+      pb.style.width=(s/h*100)+'%';
+    });
+    /* CTA glow follow mouse */
+    var cta=document.querySelector('.cta-f');
+    cta&&cta.addEventListener('mousemove',function(e){
+      var r=cta.getBoundingClientRect();
+      cta.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+      cta.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
     });
   });
   </script>
