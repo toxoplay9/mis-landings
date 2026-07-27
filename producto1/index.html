@@ -23,11 +23,11 @@
   3. Reemplazá las URLs de abajo por el nombre de tu archivo
 
   Tus imágenes disponibles:
-  - hero-bg.jpg     → Fondo del hero (sección principal)
-  - producto.jpg    → Foto del producto
-  - testimonio1.jpg → Foto de la clienta María
-  - testimonio2.jpg → Foto de la clienta Valeria
-  - testimonio3.jpg → Foto de la clienta Carla
+  - hero-bg.png     → Fondo del hero (sección principal)
+  - producto.png    → Foto del producto
+  - producto-v2.png → Segunda foto del producto
+  - chatgpt-1.png   → Imagen generada
+  - chatgpt-2.png   → Imagen generada
 
   EJEMPLO: Si tu imagen se llama "mi-foto.jpg", poné:
   url('images/mi-foto.jpg')
@@ -64,8 +64,8 @@
   }
   .hero::before{
     content:'';position:absolute;inset:0;z-index:0;opacity:0.25;
-    background:url('images/hero-bg.jpg') center/cover no-repeat fixed;
-    /* fallback: background:url('https://images.unsplash.com/photo-1643722024730-b80f1c40b6d7?w=1600&q=80') center/cover no-repeat fixed; */
+    background:url('https://images.unsplash.com/photo-1643722024730-b80f1c40b6d7?w=1600&q=80') center/cover no-repeat fixed;
+    /* Para usar tu imagen: cambiala a background:url('images/hero-bg.png') */
   }
   .hero::after{
     content:'';position:absolute;inset:0;z-index:0;opacity:0.15;
