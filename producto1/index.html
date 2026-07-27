@@ -97,34 +97,51 @@
     footer a { color: #8B5E3C; text-decoration: underline; }
 
     /* ===== ANIMACIONES ===== */
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    .anim-hidden { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-    .anim-hidden.anim-visible { opacity: 1; transform: translateY(0); }
-    .anim-hidden:nth-child(2) { transition-delay: 0.15s; }
-    .anim-hidden:nth-child(3) { transition-delay: 0.3s; }
-    .hero-content > * { animation: fadeInUp 0.8s ease-out both; }
+    @keyframes subir {
+      0% { opacity: 0; transform: translateY(60px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes latido {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(37,211,102,0.3); }
+      50% { transform: scale(1.06); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
+    }
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes aparecer {
+      0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .anim-hidden { opacity: 0; transform: translateY(40px); }
+    .anim-visible { animation: aparecer 0.7s ease-out forwards; }
+    .anim-hidden:nth-child(1) { --delay: 0s; }
+    .anim-hidden:nth-child(2) { --delay: 0.12s; }
+    .anim-hidden:nth-child(3) { --delay: 0.24s; }
+    .anim-hidden:nth-child(4) { --delay: 0.36s; }
+    .anim-hidden:nth-child(5) { --delay: 0.48s; }
+    .anim-hidden:nth-child(6) { --delay: 0.6s; }
+    .anim-visible { animation-delay: var(--delay, 0s); }
+    .hero-content > * { opacity: 0; animation: subir 0.9s ease-out forwards; }
     .hero-content > :nth-child(1) { animation-delay: 0.1s; }
-    .hero-content > :nth-child(2) { animation-delay: 0.25s; }
-    .hero-content > :nth-child(3) { animation-delay: 0.4s; }
-    .hero-content > :nth-child(4) { animation-delay: 0.55s; }
-    .hero-content > :nth-child(5) { animation-delay: 0.7s; }
-    .badge { animation: float 3s ease-in-out 1.5s infinite; }
-    .btn-whatsapp { animation: pulse 2s ease-in-out 1s 3; }
+    .hero-content > :nth-child(2) { animation-delay: 0.3s; }
+    .hero-content > :nth-child(3) { animation-delay: 0.5s; }
+    .hero-content > :nth-child(4) { animation-delay: 0.7s; }
+    .hero-content > :nth-child(5) { animation-delay: 0.9s; }
+    .badge { animation: flotar 3s ease-in-out 1.2s infinite; }
+    .btn-whatsapp { animation: latido 2s ease-in-out 0.8s 4; }
     .feature-card, .testimonial, .comparacion-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .feature-card:hover { transform: translateY(-8px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+    .feature-card:hover { transform: translateY(-10px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-      .anim-hidden { opacity: 1; transform: none; }
+      .anim-hidden, .hero-content > * { opacity: 1; transform: none; }
     }
     @media (max-width: 640px) {
       section { padding: 2.5rem 0; }
       .features-grid, .testimonials-grid { grid-template-columns: 1fr; }
       .comparacion { grid-template-columns: 1fr; }
       .hero { background-attachment: scroll; min-height: 90vh; }
-      .btn-whatsapp { animation: pulse 2s ease-in-out 1s 2; }
+      .btn-whatsapp { animation: latido 2s ease-in-out 0.8s 3; }
     }
   </style>
 </head>
