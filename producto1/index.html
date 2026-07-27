@@ -96,11 +96,35 @@
     footer { text-align: center; padding: 2rem 1.25rem; font-size: 0.85rem; color: #8B7B75; }
     footer a { color: #8B5E3C; text-decoration: underline; }
 
+    /* ===== ANIMACIONES ===== */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .anim-hidden { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .anim-hidden.anim-visible { opacity: 1; transform: translateY(0); }
+    .anim-hidden:nth-child(2) { transition-delay: 0.15s; }
+    .anim-hidden:nth-child(3) { transition-delay: 0.3s; }
+    .hero-content > * { animation: fadeInUp 0.8s ease-out both; }
+    .hero-content > :nth-child(1) { animation-delay: 0.1s; }
+    .hero-content > :nth-child(2) { animation-delay: 0.25s; }
+    .hero-content > :nth-child(3) { animation-delay: 0.4s; }
+    .hero-content > :nth-child(4) { animation-delay: 0.55s; }
+    .hero-content > :nth-child(5) { animation-delay: 0.7s; }
+    .badge { animation: float 3s ease-in-out 1.5s infinite; }
+    .btn-whatsapp { animation: pulse 2s ease-in-out 1s 3; }
+    .feature-card, .testimonial, .comparacion-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .feature-card:hover { transform: translateY(-8px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .anim-hidden { opacity: 1; transform: none; }
+    }
     @media (max-width: 640px) {
       section { padding: 2.5rem 0; }
       .features-grid, .testimonials-grid { grid-template-columns: 1fr; }
       .comparacion { grid-template-columns: 1fr; }
       .hero { background-attachment: scroll; min-height: 90vh; }
+      .btn-whatsapp { animation: pulse 2s ease-in-out 1s 2; }
     }
   </style>
 </head>
@@ -128,12 +152,12 @@
       <h2 id="dolor-title" class="section-title">De esto a esto</h2>
       <p class="section-sub">El calor terapéutico no es un mito. Estudios clínicos demuestran que alivia el dolor menstrual tan bien como el ibuprofeno.</p>
       <div class="comparacion">
-        <div class="comparacion-card antes">
+        <div class="comparacion-card antes anim-hidden">
           <p style="font-size:3rem;margin-bottom:1rem;">😣</p>
           <h3>Sin el cinturón</h3>
           <p style="color:#6B5B55;margin-top:0.5rem;">Cólicos que te doblan, días perdidos en cama, pastillas que te caen mal.</p>
         </div>
-        <div class="comparacion-card despues">
+        <div class="comparacion-card despues anim-hidden">
           <p style="font-size:3rem;margin-bottom:1rem;">😌</p>
           <h3>Con el cinturón</h3>
           <p style="color:rgba(255,255,255,0.85);margin-top:0.5rem;">Alivio en 10-15 minutos. Sigues con tu día. Sin pastillas, sin efectos secundarios.</p>
@@ -148,17 +172,17 @@
       <h2 id="beneficios-title" class="section-title">Tres razones por las que funciona</h2>
       <p class="section-sub">El calor localizado actúa directo sobre la causa del dolor, no solo sobre los síntomas.</p>
       <div class="features-grid">
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">🔥</span>
           <h3>Relaja el útero contraído</h3>
           <p>El calor profundo reduce las contracciones musculares que causan los cólicos. Efecto similar al ibuprofeno, pero sin dañar tu estómago.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">🩸</span>
           <h3>Activa la circulación</h3>
           <p>Dilata los vasos sanguíneos, mejora el flujo y elimina más rápido las sustancias que producen el dolor.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">🧠</span>
           <h3>Libera endorfinas</h3>
           <p>El calor estimula la producción de tus analgésicos naturales. Alivio sin químicos ni efectos secundarios.</p>
@@ -173,32 +197,32 @@
       <h2 id="specs-title" class="section-title">Especificaciones técnicas</h2>
       <p class="section-sub">Todo lo que necesitas saber antes de comprar.</p>
       <div class="features-grid">
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">⚡</span>
           <h3>Calentamiento en 5 segundos</h3>
           <p>Tecnología de grafeno. Alcanza la temperatura ideal en segundos. No esperas, alivia al instante.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">🔋</span>
           <h3>Hasta 6 horas de uso</h3>
           <p>Batería recargable por USB. Carga completa en 2 horas. Úsalo todo el día sin preocuparte.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">🌡️</span>
           <h3>3 niveles de calor</h3>
           <p>45°C (suave), 55°C (medio) y 65°C (intenso). Regula según tu dolor y sensibilidad.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">👚</span>
           <h3>Ultrafino y discreto</h3>
           <p>Se usa debajo de la ropa sin que se note. Silencioso. Ideal para trabajo, casa o la calle.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">🛡️</span>
           <h3>Apagado automático</h3>
           <p>Seguridad integrada: se apaga solo después de 45 minutos. Protección contra sobrecalentamiento.</p>
         </article>
-        <article class="feature-card">
+        <article class="feature-card anim-hidden">
           <span class="feature-icon">📏</span>
           <h3>Se ajusta a tu cuerpo</h3>
           <p>Diseño ergonómico que se adapta a cualquier figura. Cómodo, flexible, no estorba.</p>
@@ -213,12 +237,12 @@
       <h2 id="testimonials-title" class="section-title">Lo que dicen quienes ya lo usan</h2>
       <p class="section-sub">Mujeres como tú que encontraron alivio real.</p>
       <div class="testimonials-grid">
-        <blockquote class="testimonial">
+        <blockquote class="testimonial anim-hidden">
           <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
           <p>"Desde que lo tengo, los cólicos dejaron de arruinarme el día. Me lo pongo en la oficina y nadie nota que lo llevo puesto. Adiós a los ibuprofenos que me caían tan mal."</p>
           <footer class="testimonial-author">María G. <span>— Verificada</span></footer>
         </blockquote>
-        <blockquote class="testimonial">
+        <blockquote class="testimonial anim-hidden">
           <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
           <p>"Sufría tanto que perdía dos días al mes en cama. Desde que compré el cinturón, puedo trabajar y hacer mi vida normal. De verdad funciona, se lo recomendé a mis amigas."</p>
           <footer class="testimonial-author">Valeria R. <span>— Verificada</span></footer>
@@ -236,6 +260,16 @@
     </div>
   </section>
 
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('anim-visible'); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.anim-hidden').forEach(function(el) { observer.observe(el); });
+  });
+  </script>
   <footer>
     <div class="container">
       <p>© 2026 Cinturón Anticólicos. Todos los derechos reservados.</p>
