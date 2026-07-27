@@ -40,13 +40,14 @@
       min-height: 100vh; display: flex; align-items: center; justify-content: center;
       position: relative; text-align: center; padding: 1.25rem;
       background: linear-gradient(rgba(45,36,32,0.6), rgba(45,36,32,0.7)),
-        url('https://images.unsplash.com/photo-1643722024730-b80f1c40b6d7?w=1600&q=80') center/cover no-repeat fixed;
+        url('https://images.unsplash.com/photo-1643722024730-b80f1c40b6d7?w=1600&q=80') center/cover no-repeat;
+      background-attachment: fixed;
       color: #fff;
     }
     .hero-content { max-width: 640px; position: relative; z-index: 1; }
     .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.75rem; }
     .hero p { font-size: clamp(1rem, 2.5vw, 1.15rem); color: rgba(255,255,255,0.85); margin-bottom: 0.75rem; max-width: 480px; margin-left: auto; margin-right: auto; }
-    .hero .badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.8rem; backdrop-filter: blur(4px); margin-bottom: 1.25rem; }
+    .hero .badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 0.35rem 1rem; border-radius: 50px; font-size: 0.8rem; -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); margin-bottom: 1.25rem; }
     .hero .price { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
     .hero .price span { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.6); text-decoration: line-through; margin-right: 0.75rem; }
     .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; font-size: 1.05rem; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: none; min-height: 48px; }
@@ -136,12 +137,31 @@
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
       .anim-hidden, .hero-content > * { opacity: 1; transform: none; }
     }
+    /* iOS Safari: el fixed background rompe el scroll */
+    @supports (-webkit-touch-callout: none) { .hero { background-attachment: scroll; } }
+
     @media (max-width: 640px) {
       section { padding: 2.5rem 0; }
-      .features-grid, .testimonials-grid { grid-template-columns: 1fr; }
-      .comparacion { grid-template-columns: 1fr; }
-      .hero { background-attachment: scroll; min-height: 90vh; }
+      section:first-of-type { padding-top: 2rem; }
+      .features-grid, .testimonials-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .comparacion { grid-template-columns: 1fr; gap: 1rem; }
+      .hero { min-height: 90vh; }
+      .hero-content { padding: 3rem 0; }
+      .hero h1 { font-size: 1.75rem; }
+      .feature-card, .testimonial { padding: 1.5rem; }
+      .comparacion-card { padding: 1.5rem; }
+      .container { padding: 0 1rem; }
+      .section-sub { margin-bottom: 2rem; font-size: 1rem; }
+      .btn { width: 100%; justify-content: center; }
+      .hero .btn { width: auto; min-width: 200px; }
       .btn-whatsapp { animation: latido 2s ease-in-out 0.8s 3; }
+      .badge { font-size: 0.75rem; }
+    }
+
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 1.5rem; }
+      .hero .price { font-size: 1.6rem; }
+      .section-title { font-size: 1.3rem; }
     }
   </style>
 </head>
